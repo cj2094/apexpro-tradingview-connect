@@ -15,7 +15,6 @@
 	"author": "0xIbuki",
 	"license": "MIT",
 	"dependencies": {
-		"@dydxprotocol/v3-client": "^1.14.0",
 		"@perp/sdk-curie": "1.16.0",
 		"@sentry/integrations": "^6.19.1",
 		"@sentry/node": "^6.18.2",
@@ -23,7 +22,8 @@
 		"@types/config": "^0.0.41",
 		"@types/express": "^4.17.13",
 		"@types/node": "^17.0.21",
-		"apexpro-connector-node": "^0.0.3",
+		"apexpro-connector-node": "^0.0.4",
+		"big.js": "^6.2.1",
 		"config": "^3.3.7",
 		"dotenv": "^16.0.0",
 		"ethers": "^5.7.2",
