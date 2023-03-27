@@ -67,13 +67,17 @@ export const validateAlert = async (
 
 	// check market if exchange is Apexpro
 	if (!alertMessage.exchange || alertMessage.exchange == 'apexpro') {
-		const market = alertMessage.market;
+		let market = alertMessage.market;
 		if (!market) {
 			console.error('Market field of tradingview alert is not correct.');
 			return false;
 		}
 
 		const connector = await ApexproConnector.build();
+
+		if (market.endsWith("USD")) {
+			market = market.replace("USD", "USDC")
+		}
 
 		const marketsData = await connector.GetSymbolData(market);
 		// console.log('markets', markets);

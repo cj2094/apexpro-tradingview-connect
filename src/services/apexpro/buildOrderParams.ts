@@ -17,7 +17,10 @@ export const apexproBuildOrderParams = async (alertMessage: AlertObject) => {
 
 	const connector = await ApexproConnector.build();
 
-	const market = alertMessage.market;
+	let market = alertMessage.market;
+	if (market.endsWith("USD")) {
+		market = market.replace("USD", "USDC");
+	}
 	const marketsData = await connector.GetSymbolData(market);
 	console.log('marketsData', marketsData);
 
