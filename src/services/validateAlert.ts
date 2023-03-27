@@ -78,6 +78,10 @@ export const validateAlert = async (
 		const marketsData = await connector.GetSymbolData(market);
 		// console.log('markets', markets);
 
+		if (!marketsData) {
+			console.error('marketsData field of tradingview alert is not correct.');
+			return false;
+		}
 		const minOrderSize = parseFloat(marketsData.minOrderSize);
 
 		// check order size is greater than mininum order size
