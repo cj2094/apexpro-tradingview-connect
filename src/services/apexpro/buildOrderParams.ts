@@ -21,14 +21,23 @@ export const apexproBuildOrderParams = async (alertMessage: AlertObject) => {
 	if (market.endsWith("USD")) {
 		market = market.replace("USD", "USDC");
 	}
+
 	const marketsData = await connector.GetSymbolData(market);
+
+	if (!marketsData){
+		console.log('markets is error, symbol=' + market);
+		throw new Error('markets is error, symbol=' + market);
+	}
+
 	console.log('marketsData', marketsData);
 
 	const tickerData = await connector.client.publicApi.tickers(marketsData.crossSymbolName);
 	console.log('tickerData', tickerData);
 	if (tickerData.length == 0) {
-		console.log('tickerData is error');
+		console.error('tickerData is error');
+		throw new Error('tickerData is error, symbol=' + marketsData.crossSymbolName);
 	}
+	
 
 	const orderSide =
 		alertMessage.order == 'buy' ? "BUY" : "SELL";

@@ -42,15 +42,20 @@ router.post('/', async (req, res) => {
 			break;
 		}
 		default: {
-			const orderParams = await apexproBuildOrderParams(req.body);
-			if (!orderParams) return;
-			orderResult = await apexproCreateOrder(orderParams);
-			if (!orderResult) return;
-			await apexproExportOrder(
-				req.body['strategy'],
-				orderResult,
-				req.body['price']
-			);
+			try {
+				const orderParams = await apexproBuildOrderParams(req.body);
+				if (!orderParams) return;
+				orderResult = await apexproCreateOrder(orderParams);
+				if (!orderResult) return;
+				await apexproExportOrder(
+					req.body['strategy'],
+					orderResult,
+					req.body['price']
+				);
+			} catch (e) {
+				res.send('Error. ' + (e.message || e));
+				return;
+			}
 		}
 	}
 
