@@ -25,6 +25,7 @@ export const apexproBuildOrderParams = async (alertMessage: AlertObject) => {
 	const marketsData = await connector.GetSymbolData(market);
 
 	if (!marketsData){
+		console.log('markets is error, symbol=' + market);
 		throw new Error('markets is error, symbol=' + market);
 	}
 
