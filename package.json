@@ -22,7 +22,7 @@
 		"@types/config": "^0.0.41",
 		"@types/express": "^4.17.13",
 		"@types/node": "^17.0.21",
-		"apexpro-connector-node": "^0.0.4",
+		"apexpro-connector-node": "^0.0.6",
 		"big.js": "^6.2.1",
 		"config": "^3.3.7",
 		"dotenv": "^16.0.0",
