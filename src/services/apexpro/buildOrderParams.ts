@@ -37,7 +37,7 @@ export const apexproBuildOrderParams = async (alertMessage: AlertObject) => {
 		console.error('tickerData is error');
 		throw new Error('tickerData is error, symbol=' + marketsData.crossSymbolName);
 	}
-	
+
 
 	const orderSide =
 		alertMessage.order == 'buy' ? "BUY" : "SELL";
@@ -62,7 +62,7 @@ export const apexproBuildOrderParams = async (alertMessage: AlertObject) => {
 	const tickSize = parseFloat(marketsData.tickSize);
 	console.log('latestPrice', latestPrice);
 
-	const slippagePercentage = 0.05;
+	const slippagePercentage = 0.1;
 	const minPrice =
 		orderSide == "BUY"
 			? latestPrice * (1 + slippagePercentage)
