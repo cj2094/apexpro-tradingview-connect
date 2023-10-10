@@ -53,9 +53,14 @@ export const apexproBuildOrderParams = async (alertMessage: AlertObject) => {
 	}
 
 	const stepSize = parseFloat(marketsData.stepSize);
-	const stepDecimal = getDecimalPointLength(stepSize);
-	const orderSizeStr = Number(orderSize).toFixed(stepDecimal);
+	let orderSizeStr;
 
+	if(stepSize  >= 1){
+		orderSizeStr =  new BigNumber(orderSize).div(stepSize).dp(0,BigNumber.ROUND_DOWN).multipliedBy(stepSize).toFixed(0,BigNumber.ROUND_DOWN)
+	}else{
+		const stepDecimal = getDecimalPointLength(stepSize);
+		orderSizeStr = Number(orderSize).toFixed(stepDecimal);
+	}
 
 
 	const latestPrice = parseFloat(tickerData.at(0).oraclePrice);
